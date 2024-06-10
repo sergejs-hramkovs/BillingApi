@@ -1,4 +1,6 @@
-﻿namespace Billing.Data.Dto
+﻿using Billing.Data.Enums;
+
+namespace Billing.Data.Dto
 {
     public class OrderInputDto
     {
@@ -8,7 +10,7 @@
 
         public float PaymentAmount { get; set; }
 
-        public int PaymentGatewayId { get; set; }
+        public PaymentGateway GatewayType { get; set; }
 
         public string? OrderDescription { get; set; }
     }

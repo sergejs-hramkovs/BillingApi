@@ -7,7 +7,7 @@ namespace Billing.Services.Implementation.Strategies
 {
     public class CryptoPaymentGatewayStrategy : IPaymentGatewayStrategy
     {
-        public PaymentGateway GatewayType => PaymentGateway.Crypto;
+        public PaymentGateway? GatewayType => PaymentGateway.Crypto;
 
         public CryptoPaymentGatewayStrategy()
         {
@@ -16,7 +16,9 @@ namespace Billing.Services.Implementation.Strategies
 
         public ServiceResult ProcessPayment(OrderInputDto orderInput)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Crypto");
+
+            return new ServiceResult("Crypto", null);
         }
     }
 }

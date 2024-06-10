@@ -6,7 +6,8 @@ namespace Billing.Services.Interfaces
 {
     public interface IPaymentGatewayStrategy
     {
-        PaymentGateway GatewayType { get; }
+        PaymentGateway? GatewayType { get; }
+
         ServiceResult ProcessPayment(OrderInputDto orderInput);
     }
 }

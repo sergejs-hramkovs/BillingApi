@@ -7,7 +7,7 @@ namespace Billing.Services.Implementation.Strategies
 {
     public class CardPaymentGatewayStrategy : IPaymentGatewayStrategy
     {
-        public PaymentGateway GatewayType => PaymentGateway.Card;
+        public PaymentGateway? GatewayType => PaymentGateway.Card;
 
         public CardPaymentGatewayStrategy()
         {
@@ -16,7 +16,9 @@ namespace Billing.Services.Implementation.Strategies
 
         public ServiceResult ProcessPayment(OrderInputDto orderInput)
         {
+            Console.WriteLine("Card");
 
+            return new ServiceResult("Card", null);
         }
     }
 }

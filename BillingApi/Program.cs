@@ -1,3 +1,6 @@
+using Billing.Services.Implementation;
+using Services.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddStrategies(typeof(BillingService).Assembly);
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
