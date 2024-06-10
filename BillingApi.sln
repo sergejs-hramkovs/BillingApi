@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingApi", "BillingApi\BillingApi.csproj", "{43B82201-E5D3-4860-9CE1-53A0C57C0BF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "BillingApi\API.csproj", "{43B82201-E5D3-4860-9CE1-53A0C57C0BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{CFE4D2BC-E577-419A-B7C7-3B3D9095560B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{81482C8B-B2F1-4055-AAB8-CA079D589007}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{43B82201-E5D3-4860-9CE1-53A0C57C0BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43B82201-E5D3-4860-9CE1-53A0C57C0BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43B82201-E5D3-4860-9CE1-53A0C57C0BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE4D2BC-E577-419A-B7C7-3B3D9095560B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE4D2BC-E577-419A-B7C7-3B3D9095560B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE4D2BC-E577-419A-B7C7-3B3D9095560B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE4D2BC-E577-419A-B7C7-3B3D9095560B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81482C8B-B2F1-4055-AAB8-CA079D589007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81482C8B-B2F1-4055-AAB8-CA079D589007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81482C8B-B2F1-4055-AAB8-CA079D589007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81482C8B-B2F1-4055-AAB8-CA079D589007}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
