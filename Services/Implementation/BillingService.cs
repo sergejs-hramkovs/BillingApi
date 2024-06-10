@@ -27,16 +27,17 @@ namespace Billing.Services.Implementation
             }
 
             ServiceResult paymentResult = paymentGatewayStrategy.ProcessPayment(orderInput);
-            return paymentResult;
             if (paymentResult.IsSuccess)
             {
-                ServiceResult receipt = _receiptService.CreatePaymentReceipt(orderInput);
-                return receipt;
+                ServiceResult receiptResult = _receiptService.CreatePaymentReceipt(orderInput);
+                if (receiptResult.IsSuccess)
+                {
+                    return receiptResult;
+                }
             }
-            else
-            {
-                return new ServiceResult(null, new ServiceResultError("Error processing order"));
-            }
+
+            return new ServiceResult(null, new ServiceResultError("Error processing order"));
+
         }
     }
 }

@@ -2,23 +2,32 @@
 using Billing.Data.Dto.Output;
 using Billing.Data.Enums;
 using Billing.Services.Interfaces;
+using Services.Interfaces;
 
 namespace Billing.Services.Implementation.Strategies
 {
     public class CryptoPaymentGatewayStrategy : IPaymentGatewayStrategy
     {
+        private readonly IUserCheckingService _userCheckingService;
+        private readonly IReceiptService _receiptService;
+
         public PaymentGateway? GatewayType => PaymentGateway.Crypto;
 
-        public CryptoPaymentGatewayStrategy()
+        public CryptoPaymentGatewayStrategy(IUserCheckingService userCheckingService, IReceiptService receiptService)
         {
-
+            _userCheckingService = userCheckingService;
+            _receiptService = receiptService;
         }
 
         public ServiceResult ProcessPayment(OrderInputDto orderInput)
         {
-            Console.WriteLine("Crypto");
+            if (_userCheckingService.IsUserValid(orderInput.UserId))
+            {
+                ServiceResult receiptResult = _receiptService.CreatePaymentReceipt(orderInput);
+                return receiptResult;
+            }
 
-            return new ServiceResult("Crypto", null);
+            return new ServiceResult(null, new ServiceResultError("Error processing payment"));
         }
     }
 }

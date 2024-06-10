@@ -1,6 +1,7 @@
 ﻿using Billing.Data.Dto;
 using Billing.Data.Dto.Output;
 using Billing.Services.Interfaces;
+using System.Text;
 
 namespace Billing.Services.Implementation
 {
@@ -13,7 +14,17 @@ namespace Billing.Services.Implementation
 
         public ServiceResult CreatePaymentReceipt(OrderInputDto orderInput)
         {
-            return new ServiceResult(null, null);
+            StringBuilder sb = new();
+            sb.AppendLine("######");
+            sb.AppendLine($"OrderNumber: {orderInput.OrderNumber}");
+            sb.AppendLine($"UserId: {orderInput.UserId}");
+            sb.AppendLine($"Amount: {orderInput.PaymentAmount}");
+            sb.AppendLine($"Type: {orderInput.GatewayType}");
+            sb.AppendLine($"Description: {orderInput.OrderDescription ?? "N/A"}");
+            sb.AppendLine("######");
+
+            var receiptResult = new ServiceResult(sb.ToString(), null);
+            return receiptResult;
         }
     }
 }
