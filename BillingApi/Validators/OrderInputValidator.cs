@@ -3,6 +3,9 @@ using FluentValidation;
 
 namespace API.Validators
 {
+    /// <summary>
+    /// Validator for the OrderInputDto class.
+    /// </summary>
     public class OrderInputValidator : AbstractValidator<OrderInputDto>
     {
         public OrderInputValidator()
