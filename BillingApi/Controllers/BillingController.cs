@@ -1,5 +1,5 @@
-﻿using API.Validators;
-using Billing.Data.Dto;
+﻿using Billing.Data.Dto;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using System.Net;
@@ -11,9 +11,9 @@ namespace BillingApi.Controllers
     public class BillingController : ControllerBase
     {
         private readonly IBillingService _billingService;
-        private readonly OrderInputValidator _orderInputValidator;
+        private readonly IValidator<OrderInputDto> _orderInputValidator;
 
-        public BillingController(IBillingService billingService, OrderInputValidator orderInputValidator)
+        public BillingController(IBillingService billingService, IValidator<OrderInputDto> orderInputValidator)
         {
             _billingService = billingService;
             _orderInputValidator = orderInputValidator;

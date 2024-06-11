@@ -11,6 +11,7 @@ namespace API.Validators
             RuleFor(order => order.UserId).GreaterThan(0);
             RuleFor(order => order.OrderNumber).GreaterThan(0);
             RuleFor(order => order.GatewayType).IsInEnum();
+            RuleFor(order => order.PaymentAmount).GreaterThan(0);
         }
     }
 }
