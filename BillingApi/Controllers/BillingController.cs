@@ -1,5 +1,4 @@
 ﻿using Billing.Data.Dto;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using System.Net;
@@ -11,28 +10,44 @@ namespace BillingApi.Controllers
     public class BillingController : ControllerBase
     {
         private readonly IBillingService _billingService;
-        private readonly IValidator<OrderInputDto> _orderInputValidator;
+        private readonly ILogger<BillingController> _logger;
 
-        public BillingController(IBillingService billingService, IValidator<OrderInputDto> orderInputValidator)
+        public BillingController(
+            IBillingService billingService,
+            ILogger<BillingController> logger)
         {
             _billingService = billingService;
-            _orderInputValidator = orderInputValidator;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// Processes an order based on the provided input data.
+        /// </summary>
+        /// <param name="orderInput">The input data for the order to be processed.</param>
+        /// <returns>A result indicating the success or failure of the order processing. </returns>
         [HttpPost("processOrder")]
         public IActionResult ProcessOrder([FromForm] OrderInputDto orderInput)
         {
-            var validationResult = _orderInputValidator.Validate(orderInput);
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(validationResult.Errors);
-            }
+            _logger.LogInformation(
+                "[{Class} - {Method}]: Processing order, OrderNumber: {Number}, UserId: {Id}",
+                nameof(BillingController),
+                nameof(ProcessOrder),
+                orderInput.OrderNumber,
+                orderInput.UserId);
 
             var result = _billingService.ProcessOrder(orderInput);
             if (result.IsSuccess)
             {
                 return Ok(result.Data);
             }
+
+            _logger.LogError(
+                "[{Class} - {Method}]: Error processing order, OrderNumber: {Number}, UserId: {Id}, Error: {Error}",
+                nameof(BillingController),
+                nameof(ProcessOrder),
+                orderInput.OrderNumber,
+                orderInput.UserId,
+                result.Error);
 
             return StatusCode((int)HttpStatusCode.InternalServerError, result.Error);
         }
